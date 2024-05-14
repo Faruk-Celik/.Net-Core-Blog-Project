@@ -15,7 +15,8 @@ namespace BusinessLayer.Abstract
 		Blog TGetById ( int id );
 		List<Blog> TListAllBlog ();
 		List <Blog> TGetListWithCategory ();
-		
-	
+		List<Blog> TGetBlogByWriter ( int id );
+
+
 	}
 }
