@@ -10,7 +10,7 @@ namespace CoreProject.WebUI.Controllers
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         public IActionResult Index ()
         {
-            var values = cm.TListAllCategory();
+            var values = cm.TGetList();
             return View(values);
             
         }

@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-	public interface IBlogService
-	{
-		void TAddBlog ( Blog blog );
-		void TUpdateBlog ( Blog blog );
-		void TDeleteBlog ( Blog blog );
-		Blog TGetById ( int id );
+	public interface IBlogService:IGenericService<Blog>
+    {
+		
+
 		List<Blog> TListAllBlog ();
 		List <Blog> TGetListWithCategory ();
 		List<Blog> TGetBlogByWriter ( int id );

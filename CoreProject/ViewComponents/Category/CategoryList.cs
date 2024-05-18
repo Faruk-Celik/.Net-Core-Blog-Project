@@ -9,7 +9,7 @@ namespace CoreProject.WebUI.ViewComponents.Category
         CategoryManager Cm = new CategoryManager( new EfCategoryRepository());
         public IViewComponentResult Invoke ()
         {
-            var values = Cm.TListAllCategory();
+            var values = Cm.TGetList();
             return View(values);
         }
     }
