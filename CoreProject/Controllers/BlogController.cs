@@ -16,6 +16,8 @@ namespace CoreProject.WebUI.Controllers
     public class BlogController : Controller
     {
         BlogManager bm = new BlogManager(new EfBlogRepository());
+        CategoryManager cm = new CategoryManager(new EfCategoryRepository());
+
         public IActionResult Index ()
         {
             var values = bm.TGetListWithCategory();
@@ -36,7 +38,6 @@ namespace CoreProject.WebUI.Controllers
         [HttpGet]
         public IActionResult BlogAdd ()
         {
-            CategoryManager cm = new CategoryManager(new EfCategoryRepository());   
             List<SelectListItem> valueCategory = (from x in cm.TGetList()
                                                   select new SelectListItem
                                                   {
@@ -61,10 +62,10 @@ namespace CoreProject.WebUI.Controllers
                 p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                 p.WriterID = 3;
                 bm.TAdd(p);
-                return RedirectToAction("BlogListByWriter", "Blog");
+                return RedirectToAction("BlogListByWriter");
             }
 
-
+            else
             {
                 foreach (var item in results.Errors)
                 {
@@ -72,6 +73,38 @@ namespace CoreProject.WebUI.Controllers
                 }
                 return View();
             }
+        }
+        public IActionResult BlogDelete ( int id )
+        {
+            var blogValue = bm.TGetById(id);
+            bm.TDelete(blogValue);
+            return RedirectToAction("BlogListByWriter");
+        }
+        [HttpGet]
+        public IActionResult EditBlog ( int id )
+        {
+            var blogValue = bm.TGetById(id);
+            List<SelectListItem> valueCategory = (from x in cm.TGetList()
+                                                  select new SelectListItem
+                                                  {
+                                                      //Disabled = false,
+                                                      //Group = null,
+                                                      //Selected = false,
+                                                      Text = x.CategoryName,
+                                                      Value = x.CategoryID.ToString()
+                                                  }).ToList();
+            ViewBag.vc = valueCategory;
+            return View(blogValue);
+        }
+        [HttpPost]
+        public IActionResult EditBlog ( Blog p )
+        {
+
+            p.WriterID = 3;   
+            p.BlogStatus = true;
+            p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            bm.TUpdate(p);
+            return RedirectToAction("BlogListByWriter");
 
         }
 

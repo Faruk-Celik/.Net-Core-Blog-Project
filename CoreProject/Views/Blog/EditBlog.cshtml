@@ -1,0 +1,37 @@
+﻿@model EntityLayer.Concrete.Blog
+
+@{
+    ViewData ["Title"] = "EditBlog";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Edit Blog</h1>
+<br />
+@using (Html.BeginForm("EditBlog", "Blog", FormMethod.Post))
+{
+   
+    <br />
+    @Html.LabelFor(x => x.BlogTitle)
+    @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control" })
+    <br />
+
+    @Html.Label("Category")
+    @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.vc, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(x => x.BlogCreateDate)
+    @Html.TextBoxFor(x => x.BlogCreateDate, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.BlogStatus)
+    @Html.TextBoxFor(x => x.BlogStatus, new { @class = "form-control" })
+
+    <br />
+
+    @Html.LabelFor(x => x.BlogContent)
+    @Html.TextAreaFor(x => x.BlogContent, 13, 3, new { @class = "form-control" })
+    <br />
+
+    <button  class="btn btn-primary">Update</button>
+}
+
