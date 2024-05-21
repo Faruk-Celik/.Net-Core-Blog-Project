@@ -11,8 +11,9 @@
 {
    
     <br />
-    @Html.LabelFor(x => x.BlogTitle)
+    @Html.Label("BlogTitle")
     @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.BlogTitle, "", new { @class = "text-danger" })
     <br />
 
     @Html.Label("Category")
@@ -20,16 +21,19 @@
     @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "text-danger" })
     <br />
 
-    @Html.LabelFor(x => x.BlogCreateDate)
+    @Html.Label("BlogCreateDate")
     @Html.TextBoxFor(x => x.BlogCreateDate, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x=>x.BlogCreateDate,"",new { @class = "text-danger" })
     <br />
-    @Html.LabelFor(x => x.BlogStatus)
+    @Html.Label("BlogStatus")
     @Html.TextBoxFor(x => x.BlogStatus, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x=> x.BlogStatus, "", new { @class = "text-danger" })
 
     <br />
 
-    @Html.LabelFor(x => x.BlogContent)
+    @Html.Label("BlogContent")
     @Html.TextAreaFor(x => x.BlogContent, 13, 3, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x=>x.BlogContent,"",new { @class = "text-danger" })
     <br />
 
     <button  class="btn btn-primary">Update</button>

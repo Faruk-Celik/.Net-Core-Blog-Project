@@ -19,22 +19,43 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    <img src="@item.BlogImage" class="mr-2" alt="image">
-                                </td>
-                                <td>@item.BlogTitle</td>
-                                <td>
-                                    <label class="badge badge-gradient-success">@item.Category.CategoryName</label>
-                                </td>
+                                <tr>
+                                    <td>
+                                        <img src="@item.BlogImage" class="mr-2" alt="image">
+                                    </td>
+                                    <td>@item.BlogTitle</td>
+                                    @switch (item.CategoryID)
+                                    {
+                                        case 1:
+                                            <td> <span class="badge badge-success">@item.Category.CategoryName</span> </td>
+                                            break;
+                                        case 2:
+                                            <td> <span class="badge badge-primary">@item.Category.CategoryName</span> </td>
+                                            break;
+                                        case 3:
+                                            <td> <span class="badge badge-warning">@item.Category.CategoryName</span> </td>
+                                            break;
+                                        case 4:
+                                            <td> <span class="badge badge-danger">@item.Category.CategoryName</span> </td>
+                                            break;
+                                        case 5:
+                                            <td> <span class="badge badge-info">@item.Category.CategoryName</span>   </td>
+                                            break;
+                                        case 6:
+                                            <td> <span class="badge badge-dark">@item.Category.CategoryName</span>   </td>
+                                            break;
+
+                                    }
+
+
                                     <td> @(((DateTime)item.BlogCreateDate).ToString("dd.MM.yyyy")) </td>
-                            <td>
-                                <a href="/Blog/BlogReadAll/@item.BlogID " class=" btn btn-dark"> Details</a>
-                            </td>
-                            </tr>
-                                
+                                    <td>
+                                        <a href="/Blog/BlogReadAll/@item.BlogID " class=" btn btn-dark"> Details</a>
+                                    </td>
+                                </tr>
+
                             }
-                       
+
                         </tbody>
                     </table>
                 </div>

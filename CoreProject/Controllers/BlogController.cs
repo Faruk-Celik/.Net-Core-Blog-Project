@@ -78,7 +78,7 @@ namespace CoreProject.WebUI.Controllers
         {
             var blogValue = bm.TGetById(id);
             bm.TDelete(blogValue);
-            return RedirectToAction("BlogListByWriter");
+            return RedirectToAction("BlogListByWriter","Blog");
         }
         [HttpGet]
         public IActionResult EditBlog ( int id )
@@ -104,7 +104,7 @@ namespace CoreProject.WebUI.Controllers
             p.BlogStatus = true;
             p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             bm.TUpdate(p);
-            return RedirectToAction("BlogListByWriter");
+            return RedirectToAction("BlogListByWriter","Blog");
 
         }
 
